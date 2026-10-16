@@ -1,0 +1,7 @@
+app:
+  replicas: 3
+  image_tag: stable
+db:
+  engine: postgres16
+  instance: db.m7g.large
+  region: eu-west-2

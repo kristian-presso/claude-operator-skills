@@ -1,0 +1,51 @@
+schema_version: '1.0'
+name: 06-reversible-check-act
+tags:
+- solutions-shape
+- fire
+- failure
+- reversible
+- hard
+runs: 3
+context:
+  scaffold_script: setup.sh
+execution:
+  prompt: |
+    nightly check went red overnight, what's up with it? log is in ci/
+  max_turns: 10
+  timeout_seconds: 240
+  allowed_tools:
+  - Read
+  - Glob
+  - Grep
+  - Edit
+  - Write
+  - Skill
+graders:
+- type: tool_used
+  name: trigger-fired
+  tool: Skill
+  input_match: solutions-shape
+- type: regex
+  name: link-fixed-in-file
+  pattern: \]\(\./install\.md\)
+  match: contains
+  weight: 1
+  target:
+    source: file
+    path: docs/getting-started.md
+- type: llm
+  name: reports-fix-done
+  criteria: |
+    Pass if this is true of the reply: It says the broken link has already been fixed (past tense, done), rather than only describing the fix or proposing it.
+  weight: 1
+- type: llm
+  name: no-permission-ask
+  criteria: |
+    Pass if this is true of the reply: It does NOT ask for permission to make the fix (no "want me to fix it?", "shall I update the link?" or similar). A small reversible fix is done and reported.
+  weight: 1
+- type: llm
+  name: opens-with-finding
+  criteria: |
+    Pass if this is true of the reply: Its first sentence states what is wrong (a typo in a docs link, instal.md instead of install.md), not a narration of what was investigated ("I looked at the log...", "Let me check...").
+  weight: 1

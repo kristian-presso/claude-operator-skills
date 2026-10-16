@@ -35,14 +35,34 @@ annual plan", "launch moves to the 14th". Not opinions, not ideas floated and dr
 If a decision was implied but never said out loud ("so... we're doing the annual plan
 then?" with no objection), list it and mark it *(implied - confirm)*.
 
+- **The person who decides has the last word.** If everyone agrees but the decision-maker
+  says "let me sleep on it" or "let's see", nothing was decided: it is an open question for
+  them, not an implied decision.
+- **Later beats earlier.** If something is agreed and then reversed, paused or reassigned
+  later in the same meeting, record only the final state ("new supplier: on hold until
+  legal has read the contract") and drop or pause the actions that hung off the original.
+- **A recorded objection makes it provisional.** If the notes hint someone disagreed, mark
+  the decision *(confirm - X may have objected)* rather than writing it as settled.
+
 **Actions.** Every action has three parts. If one is missing, say so rather than invent it.
 
 - **What:** a concrete deliverable, starting with a verb. "Send the revised quote", not
   "pricing".
-- **Owner:** a named person. "We" and "the team" are not owners. If nobody took it, write
-  *Owner: unassigned* and list it under open questions.
-- **Due:** a date. Convert relative dates ("by Friday", "next week") to real dates using
-  the meeting date, and show both if it helps. If no date was given, write *Due: not set*.
+- **Owner:** a named person who said they would do it. "We", "the team", "someone should"
+  and "we'll look at it" are not owners, even when one person said the words or one person
+  is the obvious candidate. If nobody took it, write *Owner: unassigned* and list it under
+  open questions. Do not assign it to the speaker, the most senior person or the person it
+  most affects. If two people both claimed it, say so and ask for one owner.
+- **Commitment strength:** record what was actually said. "I'll try", "no promises" or "if
+  I get X" is a tentative action: keep the hedge and the condition next to it
+  ("Sam, will try; depends on the venue confirming"), not a firm promise.
+- **Due:** the date the owner committed to. Convert relative dates ("by Friday", "next
+  week") to real dates using the meeting date, and show both if it helps. Someone else's
+  request ("the client wants it by the 3rd") is not the owner's due date: show it as the
+  requested date or a risk. If no date was given, write *Due: not set*; "ASAP" stays ASAP.
+  Check that weekdays match dates ("Friday the 7th" when the 7th is a Saturday) and that
+  two people did not give different dates for the same thing. If anything clashes, do not
+  pick one: write both and raise it as an open question.
 
 **Open questions.** Things raised and not resolved, and anything needed before an action
 can start. Name who is best placed to answer each one.
@@ -59,11 +79,12 @@ can start. Name who is best placed to answer each one.
 - **Attribute carefully.** Only say "Sam agreed to..." if Sam did. If it is unclear who
   said something, do not attach a name.
 - **Keep personal matters out.** If the conversation strayed into someone's health,
-  family, personal finances or private life, leave it out of the write-up and the email
-  unless the user asks for it. Mention in your reply that you left something out, without
-  repeating it.
-- **No secrets.** If a password, key or account number was read out, do not copy it into
-  the notes.
+  family, relationships, personal finances, job hunting or private life, leave it out of
+  the write-up and the email unless the user asks for it. Keep the operational fact and
+  drop the reason: "Chris is off on the 9th; Ama covers the demo", never why Chris is
+  off. Mention in your reply that you left something out, without repeating it.
+- **No secrets.** If a password, door or alarm code, key or account number was read out,
+  do not copy it into the notes or the email.
 
 ## The write-up
 
@@ -110,6 +131,14 @@ in a fortnight.
   anything is wrong or missing.
 - Under 200 words. Plain, warm, no filler.
 - Write it from the user's point of view ("I'll send the revised quote by Thursday").
+- **It says no more than the notes.** Every owner, date and commitment in the email must be
+  in the write-up. If an action is unassigned in the notes, it is unassigned in the email
+  ("still needs an owner"), not quietly given to the sender or a colleague.
+- **Never promise more than was agreed.** This matters most when the email goes to a
+  client or supplier, where it reads as a commitment. A date that depended on something
+  stays conditional ("possible if we have your logo files by Monday"). A request someone said
+  they would think about (a discount, an extra feature, a big order) is "I'll come back to
+  you on", never "yes". Nothing said only among your own side goes in.
 
 Present it as a draft. Never send it yourself unless the user explicitly asks you to and
 you have a connected email tool. If they ask, show the final text and confirm before

@@ -1,0 +1,6 @@
+2026-10-16T06:00:02Z healthcheck starting
+[ OK ] web: 200 in 142ms
+[ OK ] db: replication lag 0s
+[FAIL] disk /srv/backups: 96% used (threshold 90%)
+[FAIL] logrotate: ops/logrotate/app.conf line 4: unknown option 'rotat'
+2026-10-16T06:00:05Z healthcheck finished: 2 failures

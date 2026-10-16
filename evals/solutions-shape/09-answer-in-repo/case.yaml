@@ -1,0 +1,55 @@
+schema_version: '1.0'
+name: 09-answer-in-repo
+tags:
+- solutions-shape
+- fire
+- self-answerable
+- hard
+runs: 3
+context:
+  scaffold_script: setup.sh
+execution:
+  prompt: |
+    staging deploy is blocked waiting on a db region. which region should I pick?
+  max_turns: 10
+  timeout_seconds: 240
+  allowed_tools:
+  - Read
+  - Glob
+  - Grep
+  - Edit
+  - Write
+  - Skill
+graders:
+- type: tool_used
+  name: trigger-fired
+  tool: Skill
+  input_match: solutions-shape
+- type: llm
+  name: answers-eu-west-2
+  criteria: |
+    Pass if this is true of the reply: It answers with one region, eu-west-2 (London).
+  weight: 1
+- type: llm
+  name: cites-repo-source
+  criteria: |
+    Pass if this is true of the reply: It grounds the answer in the repository (the data-residency decision record, production.yml or the Terraform provider), not in generic advice such as "pick the region closest to your users".
+  weight: 1
+- type: llm
+  name: no-question-back
+  criteria: |
+    Pass if this is true of the reply: It does not ask the user something the repo already answers (for example where their users are or which region production uses).
+  weight: 1
+- type: regex
+  name: config-filled-in
+  pattern: 'region:\s*eu-west-2'
+  match: contains
+  weight: 1
+  target:
+    source: file
+    path: deploy/staging.yml
+- type: llm
+  name: reports-action
+  criteria: |
+    Pass if this is true of the reply: It reports that it has set the region in deploy/staging.yml (done), rather than only telling the user to set it.
+  weight: 1

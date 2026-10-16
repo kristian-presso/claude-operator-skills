@@ -1,0 +1,20 @@
+Call: Brightside Dental, booking widget, Tuesday 20/10/2026, 10:00
+Attendees (calendar): Hannah Lowe (us), Raj Mehta (us), Claire Dunmore (Brightside Dental), Phil Okafor (Brightside Dental)
+
+Hannah: Thanks for making time, both.
+Claire: Of course. So the main thing for us is the booking widget. We really need it live before our open day on the 14th of November.
+Hannah: Understood. Raj, is that doable?
+Raj: It's tight. If we get the API keys from your practice software this week, maybe. Without them, no chance.
+Claire: Phil can get you those.
+Phil: I'll try. I need to ask our IT supplier, they're not always quick.
+Hannah: OK. On price, we quoted four thousand eight hundred.
+Claire: Could you do four thousand?
+Hannah: I'd have to think about that one.
+Claire: Fair enough. Also, could the widget do SMS reminders?
+Raj: Possibly. We'd need to scope it.
+Hannah: We'll look at it.
+Phil: By the way, the practice Wi-Fi password is SmileBright2026 if Raj comes on site.
+Claire: Great. Oh, and sorry I was distracted at the start, my mum's just been diagnosed with dementia so I'm a bit all over the place this week.
+Hannah: Of course, I'm so sorry, Claire.
+Claire: Thanks. Let's speak again next week.
+Hannah: Perfect. Thanks both.
