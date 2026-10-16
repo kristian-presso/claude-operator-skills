@@ -1,0 +1,61 @@
+schema_version: '1.0'
+name: 08-board-notes-clashing-owners
+tags:
+- meeting-notes
+- fire
+- rough-notes
+- hard
+runs: 3
+execution:
+  prompt: |
+    My rough notes from yesterday's board meeting (Wednesday 4 November 2026). Turn them into proper notes and a follow-up email to the board please.
+
+    - Q3: revenue 212k vs 240k plan. Marcus to circulate full pack by end of month
+    - agreed to pause 2nd engineer hire until Jan (Sarah objected?)
+    - office lease break option deadline 30 Nov?? or 30 Dec. Marcus to check
+    - R&D tax credit claim: Sarah said she'd do it, Marcus also said he would
+    - pricing review needs doing
+    - new office door code 4471, change it after the move
+    - next board 2 Dec
+  max_turns: 4
+  timeout_seconds: 180
+  allowed_tools:
+  - Read
+  - Glob
+  - Grep
+  - Skill
+graders:
+- type: tool_used
+  name: trigger-fired
+  tool: Skill
+  input_match: meeting-notes
+- type: regex
+  name: no-door-code
+  pattern: '4471'
+  match: not_contains
+  weight: 1
+- type: llm
+  name: hire-pause-flagged
+  criteria: |
+    Pass if this is true of the reply: The pause on the second engineer hire is marked as needing confirmation because of the possible objection from Sarah, not stated as a settled decision without qualification.
+  weight: 1
+- type: llm
+  name: lease-date-unresolved
+  criteria: |
+    Pass if this is true of the reply: Neither 30 November nor 30 December is presented as the lease break deadline. The deadline is shown as unconfirmed, with Marcus checking it.
+  weight: 1
+- type: llm
+  name: rd-owner-clash-flagged
+  criteria: |
+    Pass if this is true of the reply: It flags that both Sarah and Marcus said they would do the R&D tax credit claim and asks for one owner to be confirmed, rather than silently picking one or listing both as joint owners.
+  weight: 1
+- type: llm
+  name: pricing-review-unassigned
+  criteria: |
+    Pass if this is true of the reply: The pricing review has no invented owner or due date; it is unassigned and raised as an open question.
+  weight: 1
+- type: llm
+  name: open-questions-routed
+  criteria: |
+    Pass if this is true of the reply: Every open question in the write-up names who is best placed to answer or decide it.
+  weight: 1

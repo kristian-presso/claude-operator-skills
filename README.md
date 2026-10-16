@@ -24,18 +24,20 @@ Six skills for Claude about how an agent behaves when it does real work for a bu
 
 ## Tested, not just written
 
-Every skill is evaluated with Claude Code's built-in `claude plugin eval`: five cases per skill (three it should handle, two near-misses it must leave alone), each run three times with the skill and three times without, graded by a separate model. A skill ships only if Claude does better with it than without it. Results from 16/10/2026:
+Every skill is evaluated with Claude Code's built-in `claude plugin eval`: at least five cases per skill (cases it should handle, plus two near-misses it must leave alone), each run three times with the skill and three times without, graded by a separate model. A skill ships only if Claude does better with it than without it. Results from 16/10/2026:
 
 | Skill | Score with | Without | Gain |
 | --- | --- | --- | --- |
 | pushback | 0.94 | 0.65 | +0.29 |
-| solutions-shape | 0.84 | 0.71 | +0.14 |
+| solutions-shape | 0.95 (was 0.84) | 0.63 (was 0.71) | +0.32 (was +0.14) |
 | setup-guide | 0.98 | 0.74 | +0.24 |
 | write-playbook | 0.92 | 0.58 | +0.34 |
-| meeting-notes | 1.00 | 0.90 | +0.10 |
+| meeting-notes | 0.99 (was 1.00) | 0.79 (was 0.90) | +0.20 (was +0.10) |
 | level-up | 0.98 | 0.65 | +0.33 |
 
 Small gains mean plain Claude already does well there; those skills earn their place on the cases it gets wrong.
+
+Re-scored on 16/10/2026: `meeting-notes` and `solutions-shape` scored well but gained little, because their cases were too easy for plain Claude. Each now has harder cases where an expert clearly does better (an action nobody took, a hedged promise, an owner claimed twice, a follow-up email that must not over-promise; a reversible fix to make and report, an irreversible clean-up to recommend and ask about once, a shortlist whose constraints live in other files, a blocker the repository already answers), and both skills were tightened where they lost points. The earlier numbers, on the easier cases, are in brackets.
 
 ## Install
 

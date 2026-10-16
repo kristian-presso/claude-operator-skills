@@ -1,0 +1,84 @@
+schema_version: '1.0'
+name: 06-proximity-owners-and-private-reason
+tags:
+- meeting-notes
+- fire
+- transcript
+- hard
+runs: 3
+execution:
+  prompt: |
+    I'm Nadia. Write up this morning's team stand-up and draft the follow-up I can send to the team. Today is Thursday 5 November 2026.
+
+    Nadia: Right, quick one. Ben, you all set for next Thursday's stocktake?
+    Ben: Ah, I'm actually out next Thursday. I've got a second-round interview at another company, so I'm taking the day off.
+    Nadia: Oh. OK. Priya, can you cover the stocktake next Thursday?
+    Priya: Yep, fine.
+    Nadia: Supplier invoices. The Harbour Mills one is thirty days overdue.
+    Ben: Yeah, someone should really chase that.
+    Nadia: Mm.
+    Nadia: Website. Tom at the agency says he needs our product photos by the 12th.
+    Priya: I can try and get them shot, but the studio's booked until the 10th, so no promises.
+    Nadia: Oh, the new till. Can it take contactless tips?
+    Ben: Possibly. It'd need a firmware update, I think.
+    Nadia: We'll look into it.
+    Nadia: OK. Newsletter. I'd love it out by Monday.
+    Ben: I'll draft it. Wednesday, realistically.
+    Nadia: Fine.
+    Nadia: And the price rise. Are we doing it in January?
+    Priya: I think we should.
+    Ben: Yeah, January makes sense.
+    Nadia: Let me sleep on it.
+  max_turns: 4
+  timeout_seconds: 180
+  allowed_tools:
+  - Read
+  - Glob
+  - Grep
+  - Skill
+graders:
+- type: tool_used
+  name: trigger-fired
+  tool: Skill
+  input_match: meeting-notes
+- type: regex
+  name: private-reason-left-out
+  pattern: interview|another company|other company|job hunt
+  match: not_contains
+  flags: i
+  weight: 1
+- type: llm
+  name: absence-fact-kept
+  criteria: |
+    Pass if this is true of the reply: The write-up still records the operational fact that Ben is out next Thursday (12 November) or that Priya covers the stocktake, so the change of cover is not lost.
+  weight: 1
+- type: llm
+  name: chase-unassigned
+  criteria: |
+    Pass if this is true of the reply: Chasing the overdue Harbour Mills invoice has no owner. It is shown as unassigned (and raised as an open question), not given to Ben, Nadia or anyone else, including in the email.
+  weight: 1
+- type: llm
+  name: photos-hedged
+  criteria: |
+    Pass if this is true of the reply: Priya's product photos action is NOT recorded as a firm commitment due 12 November. It shows she only said she would try, with the studio booked until the 10th, and treats the 12th as Tom's request or a risk rather than her agreed due date.
+  weight: 1
+- type: llm
+  name: tips-unowned
+  criteria: |
+    Pass if this is true of the reply: Looking into contactless tips on the new till has no owner. It is not given to Ben (he only said it might need a firmware update) or to anyone else; it is unassigned or raised as an open question.
+  weight: 1
+- type: llm
+  name: open-questions-routed
+  criteria: |
+    Pass if this is true of the reply: Every open question in the write-up names who is best placed to answer or decide it.
+  weight: 1
+- type: llm
+  name: newsletter-owner-date
+  criteria: |
+    Pass if this is true of the reply: The newsletter action is owned by Ben and due Wednesday 11 November 2026 (the date he committed to), not Monday 9 November.
+  weight: 1
+- type: llm
+  name: price-rise-open
+  criteria: |
+    Pass if this is true of the reply: The January price rise is NOT listed as a decision, implied or otherwise. It is an open question for Nadia to decide.
+  weight: 1

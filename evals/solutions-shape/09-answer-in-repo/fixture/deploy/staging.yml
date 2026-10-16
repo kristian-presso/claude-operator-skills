@@ -1,0 +1,8 @@
+# Staging environment. Copied from production.yml on 14 Oct; db section is new.
+app:
+  replicas: 1
+  image_tag: latest
+db:
+  engine: postgres16
+  instance: db.t4g.small
+  region: PICK_ME   # blocked: needs a region before the staging deploy can run

@@ -1,6 +1,6 @@
 ---
 name: solutions-shape
-description: Shapes any report of a problem as a finding, one recommended path with its reason, and the action taken or about to be taken, instead of handing back a bare problem or a menu of options. Use when the user asks for a status update or a report, for example "where are we", "status?", "what's blocking", "why did this fail", "why is this broken", "what went wrong", "is it done", "what are my options" or "what should we do"; at the end of a task when reporting what was done and what is left; and whenever about to report a blocker, failing test, bug, risk, trade-off, ambiguity or open question, or to ask something that reading the code or docs would answer.
+description: Gate for any reply that reports a problem or answers a choice. Hands back a finding, one recommended path with its reason, and the action already taken (reversible fixes done, irreversible ones asked once), never a bare problem or a menu of options. Use whenever something failed or went red (a test, build, CI job, nightly or health check, deploy); whenever work is blocked or waiting on an answer; whenever asked to choose or give a view between options ("which should I pick", "what do you reckon", "what are my options", "what should we do"); when told to "sort it out" or "fix it"; for status updates ("where are we", "status?", "what's blocking", "is it done", "why did this fail"); at the end of any task when reporting what was done and what is left; and before asking the user anything the code, config or docs could answer.
 ---
 
 # Solutions shape
@@ -38,22 +38,52 @@ Any time what you are about to say is a problem rather than a resolution:
 [Action]          What you have already done, or are about to do, about it.
 ```
 
+**Lead with the answer.** The first sentence is what is true or what you would pick, not
+what you did to find out ("I looked at the log..."). If they asked a direct question
+("which region?", "what do you reckon?"), the first sentence answers it. The labels are
+optional; the order is not.
+
 Then apply the act-or-ask test:
 
-- **Reversible and yours to call:** do it, then report in the shape above. Acting on a
-  reversible recommendation does not need permission.
+- **Reversible and yours to call:** do it, then report in the shape above, in the past
+  tense. Acting on a reversible recommendation does not need permission. Reversible means
+  easy to put back: a code or docs edit under version control, a config value, a typo, a
+  test. If the answer to their question unblocks a change like that (filling in a config
+  value the repo already answers), make the change and say so. "Want me to make the
+  change?" after a one-line reversible fix is a lazy question.
 - **Irreversible, outward-facing, or genuinely theirs to call:** recommend with a default
   and ask **once**, as a single labelled decision with the recommended option first. If
   your client has a structured question tool (a multiple-choice prompt), use it, with the
   recommended option first and marked. Never an open-ended "what do you want to do".
+  Irreversible means it cannot be undone from here: deleting data or backups, dropping
+  tables, force-pushing, sending, paying, publishing, creating or destroying real
+  infrastructure. "Sort it out" or "fix it" is not approval for any of these. Make the
+  recommendation specific (which files, which command, following any written policy), say
+  in one clause why you stopped (it cannot be undone), and ask one yes/no.
+- **Both at once:** split them. Do the reversible parts now, report them as done, and
+  bring back only the irreversible decision. One problem needing a yes is no reason to
+  leave the easy fixes undone. Preparation that is itself reversible (a dry run listing
+  exactly what would go, a fix to the script that will do it, a draft) is done before
+  you ask, so the yes/no is about one concrete thing.
 - **A finished deliverable that needs sign-off:** the ask is the deliverable itself plus
   one yes/no, not a description of it. Hand over the draft, the link, or the diff, so
   approving takes one read.
 
+**At most one question, at the end, and only if the decision is theirs.** Not "should I
+go ahead, or would you rather...", which is two. Not a second question tacked on about
+something else. Do not end on a question the recommendation does not depend on ("which
+test runner do you use?" after recommending a CI provider): offer the next step as a
+statement instead ("say the word and I'll write the pipeline config"). Anything else worth saying is a
+note, not a question.
+
 **One pick means one named option.** "Use X or Y, or Z if you want W" is a menu, not a
-recommendation. Name a single option first, then at most one line on what would change
-the pick. Leave a full comparison table out unless it was asked for; it pulls the reader
-back into choosing.
+recommendation, and so is "X (or Y if you prefer)". Name a single option in the first
+sentence, with no "or" in it, give the reason it wins for *their* constraints, then one line per alternative
+on why it loses, and at most one line on what would change the pick. When the inputs
+include hard constraints (data must stay in the EU, no new accounts, a fixed budget),
+check each option against them first: an option that breaks one is out, whatever else it
+has going for it. Leave out comparison tables, a section per option and feature-by-feature
+breakdowns unless they were asked for; they pull the reader back into choosing.
 
 ## Examples
 
@@ -90,11 +120,13 @@ back into choosing.
 
 ## Before you send: a quick check
 
-- Does the message open with what is true, not with what you did?
+- Does the message open with what is true, or with the answer, not with what you did?
 - Is there exactly one recommendation, first and labelled?
 - Is there a concrete action, done or about to be done?
+- Is every reversible fix already done, rather than offered?
+- Is anything irreversible still undone, waiting on one yes/no?
 - If there is a question, could reading one file or running one command answer it? If yes,
-  do that instead.
+  do that instead. Is there at most one question?
 
 ## Holding the position
 
@@ -114,6 +146,7 @@ gate will not be in view. To apply it every session, paste this into your `CLAUD
 ## Solutions shape (always on)
 - Never hand back a bare problem, a menu of options or a question the code or docs answer.
 - Every blocker, failure, status update and end-of-task report reads: Finding, Recommendation (one pick and why), Action (done or about to be done).
+- Reversible fixes: do them, then report. Irreversible ones (deleting data, sending, paying): recommend and ask once.
 - Only the decision that genuinely needs the person goes back to them, as a yes/no.
 ```
 

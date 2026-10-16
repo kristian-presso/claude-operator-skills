@@ -1,0 +1,10 @@
+$ lychee --offline docs/
+Issues found in 1 input. Find details below.
+
+[docs/getting-started.md]:
+   [ERROR] file:///build/docs/instal.md | Cannot find file
+
+Summary
+ Total......12
+ Successful.11
+ Errors......1
