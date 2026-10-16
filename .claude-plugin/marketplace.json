@@ -1,0 +1,23 @@
+{
+  "name": "claude-operator-skills",
+  "owner": {
+    "name": "Kristian Papadakis",
+    "url": "https://kristianpapadakis.com"
+  },
+  "description": "Operator skills for Claude, as a standalone Claude Code marketplace. All departments in one place: https://github.com/kristian-presso/claude-skills",
+  "plugins": [
+    {
+      "name": "operator-discipline",
+      "source": "./",
+      "description": "How an agent behaves when doing real work for a busy founder: challenge a bad brief, hand back solutions not problems, write guides and playbooks people can follow, and turn meetings into decisions and actions.",
+      "category": "productivity",
+      "keywords": [
+        "agents",
+        "productivity",
+        "playbooks",
+        "meetings"
+      ],
+      "homepage": "https://github.com/kristian-presso/claude-operator-skills"
+    }
+  ]
+}
